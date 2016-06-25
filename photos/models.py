@@ -9,3 +9,6 @@ class Photo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def get_absolute_url(self):
+        return '/photos/{}/'.format(self.pk)
+
