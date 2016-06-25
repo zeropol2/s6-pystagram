@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.core.urlresolvers import reverse_lazy
 
 
 class Photo(models.Model):
@@ -10,5 +11,5 @@ class Photo(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
-        return '/photos/{}/'.format(self.pk)
+        return reverse_lazy('photos:detail', kwargs={'pk': self.pk})
 
