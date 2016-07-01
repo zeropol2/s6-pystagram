@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import render, get_object_or_404
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.edit import CreateView
 
 from .models import Photo
@@ -22,12 +24,17 @@ create_photo = login_required(PhotoCreate.as_view())
 
 @login_required
 def delete_photo(request, pk):
-    photo = get_object_or_404(Photo, pk=pk)
+    if request.method == 'GET':
+        return HttpResponse()
+    elif request.method == 'POST':
+        photo = get_object_or_404(Photo, pk=pk)
 
-    if photo.user != request.user:
-        raise PermissionDenied
+        if photo.user != request.user:
+            raise PermissionDenied
 
-    pass
+        photo.delete()
+        url = reverse('photos:list_photos')
+        return redirect(url)
 
 
 def view_photo(request, pk):
@@ -41,7 +48,13 @@ def view_photo(request, pk):
 
 
 def list_photos(request):
-    pass
+    photos = Photo.objects.all()
+
+    ctx = {
+        'photos': photos,
+    }
+
+    return render(request, 'list_photos.html', ctx)
 
 
 def create_comment(request, pk):

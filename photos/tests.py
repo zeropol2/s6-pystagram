@@ -231,7 +231,7 @@ class PhotoTest(TestCase):
         # 권한이 없으므로 403 status 응답해야 함.
         self.assertEqual(response.status_code, 403)
 
-    @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
+    # @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
     def test_delete_photo(self):
         """개별 게시물을 지우는 테스트.
         """

@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block page_title %} 게시물 목록 {% endblock %}
+{% block body %}
+
+    <h1>블로그 게시물 목록</h1>
+
+    {% for photo in photos %}
+        {# <p><a href="{% url 'photos:view_photo' pk=photo.pk %}"/>{{ photo.title }}</a></p> #}
+        {% include 'part_detail.html' %}
+        {% empty %}
+        <p>게시물이 없습니다.</p>
+    {% endfor %}
+
+{% endblock %}
