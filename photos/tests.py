@@ -81,7 +81,7 @@ class PhotoTest(TestCase):
         response = self.client.get('/page_not_found/')
         self.assertEqual(response.status_code, 404)
 
-    @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
+    # @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
     def test_create_photo_by_view_on_logout(self):
         """로그아웃 상태에서 뷰 함수를 이용해 게시물을 게시하는 테스트.
         """
