@@ -74,7 +74,7 @@ class PhotoTest(TestCase):
             self.urls.create_photo(), data=data, follow=follow
         )
 
-    @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
+    # @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
     def test_404(self):
         """없는 페이지에 접근하는 테스트.
         """
