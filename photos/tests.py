@@ -182,7 +182,7 @@ class PhotoTest(TestCase):
         # http status가 404인지 확인.
         self.assertEqual(response.status_code, 404)
 
-    @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
+    # @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
     def test_delete_photo_on_logout(self):
         """로그아웃 상태에서 개별 게시물을 지우는 테스트.
         """

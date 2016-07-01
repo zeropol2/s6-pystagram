@@ -19,6 +19,7 @@ class PhotoCreate(CreateView):
 create_photo = login_required(PhotoCreate.as_view())
 
 
+@login_required
 def delete_photo(request, pk):
     pass
 
