@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from django.views.generic.edit import CreateView
 
 from .models import Photo
@@ -6,7 +7,7 @@ from .models import Photo
 
 class PhotoCreate(CreateView):
     model = Photo
-    fields = ('image', 'description', )
+    fields = ('title', 'content', 'image', 'description', )
     template_name = 'create_photo.html'
 
     def form_valid(self, form):
@@ -23,7 +24,13 @@ def delete_photo(request, pk):
 
 
 def view_photo(request, pk):
-    pass
+    photo = Photo.objects.get(pk=pk)
+
+    ctx = {
+        'photo': photo,
+    }
+
+    return render(request, 'view_photo.html', ctx)
 
 
 def list_photos(request):

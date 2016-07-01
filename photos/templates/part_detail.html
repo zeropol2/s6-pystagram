@@ -1,0 +1,12 @@
+    <h3><a href="{% url 'photos:view_photo' pk=photo.pk %}">{{ photo.title }}</a></h3>
+
+    <div>{{ photo.content }}</div>
+
+    {% if photo.image %}
+    <p><img src="{{ photo.image.url }}" /></p>
+    {% endif %}
+
+    <div>{{ photo.description }}</div>
+
+    <p>{{ photo.created_at }}</p>
+

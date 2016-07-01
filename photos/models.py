@@ -5,11 +5,13 @@ from django.core.urlresolvers import reverse_lazy
 
 class Photo(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    image = models.ImageField(upload_to='%Y/%m/%d/')
-    description = models.TextField(max_length=500)
+    title = models.CharField(max_length=200, default='제목 없음')
+    content = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='%Y/%m/%d/', null=True, blank=True)
+    description = models.TextField(max_length=500, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
-        return reverse_lazy('photos:detail', kwargs={'pk': self.pk})
+        return reverse_lazy('photos:view_photo', kwargs={'pk': self.pk})
 
