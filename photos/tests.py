@@ -134,7 +134,7 @@ class PhotoTest(TestCase):
             _form_data['title']
         )
 
-    @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
+    # @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
     def test_create_photo_for_form_errors(self):
         """뷰 함수를 이용해 게시물을 게시하는 테스트 중 필수 입력 폼 테스트.
         """

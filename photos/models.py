@@ -5,8 +5,8 @@ from django.core.urlresolvers import reverse_lazy
 
 class Photo(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    title = models.CharField(max_length=200, default='제목 없음')
-    content = models.TextField(null=True, blank=True)
+    title = models.CharField(max_length=200)
+    content = models.TextField()
     image = models.ImageField(upload_to='%Y/%m/%d/', null=True, blank=True)
     description = models.TextField(max_length=500, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
