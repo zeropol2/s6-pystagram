@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView
 
@@ -21,6 +22,11 @@ create_photo = login_required(PhotoCreate.as_view())
 
 @login_required
 def delete_photo(request, pk):
+    photo = get_object_or_404(Photo, pk=pk)
+
+    if photo.user != request.user:
+        raise PermissionDenied
+
     pass
 
 

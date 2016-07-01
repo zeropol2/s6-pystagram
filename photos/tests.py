@@ -206,7 +206,7 @@ class PhotoTest(TestCase):
         # 로그인 URL로 redirect 됐는지 확인.
         self.assertEqual(response.resolver_match.func.__name__, 'login')
 
-    @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
+    # @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
     def test_delete_photo_without_permm(self):
         """권한 없이 개별 게시물을 지우는 시도하는 테스트.
         """
