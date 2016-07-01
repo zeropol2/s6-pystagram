@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView
 
 from .models import Photo
@@ -24,7 +24,7 @@ def delete_photo(request, pk):
 
 
 def view_photo(request, pk):
-    photo = Photo.objects.get(pk=pk)
+    photo = get_object_or_404(Photo, pk=pk)
 
     ctx = {
         'photo': photo,

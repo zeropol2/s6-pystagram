@@ -172,7 +172,7 @@ class PhotoTest(TestCase):
         # 게시에 사용한 폼 인스턴스 객체가 템플릿 컨텍스트에 없는지 테스트.
         self.assertNotIn('form', response.context)
 
-    @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
+    # @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
     def test_view_photo_not_exists(self):
         """존재하지 않는 개별 게시물 페이지에 접속하여 404가 뜨는지 테스트.
         """
