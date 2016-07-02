@@ -3,6 +3,8 @@
 
     <div>{{ photo.content }}</div>
 
+    <p>{% helloworld 'a' 'b' 'c' 'd' name="changwoo" nickname="zeropol2 %}</p>
+
     {% if photo.image %}
     <p><img src="{{ photo.image.url }}" /></p>
     {% endif %}
