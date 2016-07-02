@@ -12,6 +12,16 @@ class Photo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-created_at', '-pk']  # 정렬조건
+
     def get_absolute_url(self):
         return reverse_lazy('photos:view_photo', kwargs={'pk': self.pk})
 
+
+class Like(models.Model):
+    photo = models.ForeignKey(Photo)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    status = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

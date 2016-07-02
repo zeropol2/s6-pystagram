@@ -1,3 +1,4 @@
+{% load my_tags %}
     <h3><a href="{% url 'photos:view_photo' pk=photo.pk %}">{{ photo.title }}</a></h3>
 
     <div>{{ photo.content }}</div>
@@ -7,6 +8,14 @@
     {% endif %}
 
     <div>{{ photo.description }}</div>
+
+    <div>
+        {% if photo|did_like:request.user %}
+        좋아요 취소
+        {% else %}
+        좋아요
+        {% endif %}
+    </div>
 
     <p>{{ photo.created_at }}</p>
 

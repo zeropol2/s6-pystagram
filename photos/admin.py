@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from photos.models import Photo, Like
+
+admin.site.register(Photo)
+admin.site.register(Like)
