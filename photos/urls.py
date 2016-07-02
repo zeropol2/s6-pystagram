@@ -29,5 +29,9 @@ urlpatterns = [
     url(r'^delete_comment/(?P<pk>[0-9]+)/$',
         views.delete_comment,
         name='delete_comment'),
+
+    url(r'^$',
+        views.list_photos,
+        name='default'),
 ]
 
