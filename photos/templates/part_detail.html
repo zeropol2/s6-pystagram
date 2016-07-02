@@ -3,7 +3,13 @@
 
     <div>{{ photo.content }}</div>
 
-    <p>{% helloworld 'a' 'b' 'c' 'd' name="changwoo" nickname="zeropol2 %}</p>
+    <p>{% helloworld 'a' 'b' 'c' 'd' name="changwoo" nickname="zeropol2" %}</p>
+
+    {% addnim %}
+    <p>{{ request.user }}</p>
+    <hr />
+    <p>{{ photo.user }}</p>
+    {% endaddnim %}
 
     {% if photo.image %}
     <p><img src="{{ photo.image.url }}" /></p>
