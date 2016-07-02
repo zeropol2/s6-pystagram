@@ -38,6 +38,7 @@ class PhotoTest(TestCase):
         self.urls = namedtuple('URL', (
             'create_photo', 'delete_photo', 'view_photo',
             'list_photos', 'create_comment', 'delete_comment',
+            'default',
         ))(
             # 게시물 작성하는 URL name 은 'create_photo'
             lambda : reverse('photos:create_photo'),
@@ -60,6 +61,9 @@ class PhotoTest(TestCase):
             # 댓글 지우는는 URL name 은 'delete_comment이며,
             # URL패턴의 그룹은 댓글의 pk.
             lambda pk: reverse('photos:delete_comment', kwargs={'pk': pk}),
+
+            # 기본 URL name 은 'default'
+            lambda: reverse('photos:default'),
         )
 
     def _login(self, username, password):
@@ -272,3 +276,16 @@ class PhotoTest(TestCase):
         # DB에 삭제한 게시물이 존재하는 지 확인
         _exists = models.Photo.objects.filter(pk=latest_photo.pk).exists()
         self.assertFalse(_exists)
+
+    # @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
+    def test_access_default_url(self):
+        """기본 url(/photos)로 접근 시 테스트
+        """
+        _default_url = self.urls.default()
+        response = self.client.get(_default_url)
+        self.assertEqual(response.status_code, 200)
+        # 이동한 URL의 뷰 함수가 list_photos 인지 테스트.
+        self.assertEqual(
+            response.resolver_match.func,
+            resolve(self.urls.list_photos())[0]
+        )
