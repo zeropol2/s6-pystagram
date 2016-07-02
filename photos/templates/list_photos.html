@@ -12,4 +12,8 @@
         <p>게시물이 없습니다.</p>
     {% endfor %}
 
+    <p>
+        <a href="{% url 'photos:create_photo' %}">새 글 쓰기</a>
+    </p>
+
 {% endblock %}
