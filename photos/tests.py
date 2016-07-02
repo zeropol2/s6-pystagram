@@ -289,3 +289,18 @@ class PhotoTest(TestCase):
             response.resolver_match.func,
             resolve(self.urls.list_photos())[0]
         )
+
+    # @unittest.skip('이 장식자를 제거하며 하나씩 테스트를 통과하세요')
+    def test_create_comment_by_view_on_logout(self):
+        """로그아웃 상태에서 뷰 함수를 이용해 댓글을 게시하는 테스트.
+        """
+        _form_data = {
+            'title': 'test title',
+            'content': 'test content',
+        }
+        # 로그인하지 않은 상태에서 게시물 게시 시도.
+        response = self._add_photo(_form_data)
+
+        # 로그인 하지 않았으므로 로그인 URL로 redirect 됐는지 확인.
+        self.assertEqual(response.resolver_match.func.__name__, 'login')
+        self.assertEqual(response.redirect_chain[0][1], 302)
